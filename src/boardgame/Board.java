@@ -33,5 +33,17 @@ public class Board {
 	public void setColumns(int columns) {
 		this.columns = columns;
 	}
+	
+	//METODOS
+	
+	public Piece piece(int row, int column) {
+		
+		return pieces[row][column];
+	}
 
+	//SOBRECARGA
+	
+	public Piece piece(Position position) {   //retornará a peça por posição
+		return pieces[position.getRow()][position.getColumn()];
+	}
 }
