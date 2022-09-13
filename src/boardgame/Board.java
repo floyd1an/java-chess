@@ -41,6 +41,11 @@ public class Board {
 		return pieces[row][column];
 	}
 
+	public void placePiece(Piece piece, Position position) {
+		
+		pieces[position.getRow()][position.getColumn()] = piece;
+	}
+	
 	//SOBRECARGA
 	
 	public Piece piece(Position position) {   //retornará a peça por posição
