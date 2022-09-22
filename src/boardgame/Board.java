@@ -9,6 +9,12 @@ public class Board {
 	// CONSTRUTORES
 
 	public Board(int rows, int columns) {
+		
+		if(rows < 1 || columns < 1) {
+			
+			throw new BoardException("Error creating board: there must be at least 1 row and 1 column");  // programação defensiva 
+		}
+		
 		this.rows = rows;
 		this.columns = columns;
 		pieces = new Piece[rows][columns]; // matriz de peças será instanciada na quantidade de rows e columns informadas
@@ -22,28 +28,57 @@ public class Board {
 		return rows;
 	}
 
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
+	
 
 	public int getColumns() {
 		return columns;
 	}
 
-	public void setColumns(int columns) {
-		this.columns = columns;
-	}
+	
 	
 	//METODOS
 	
 	public Piece piece(int row, int column) {
+		
+		if(!positionExists(row, column)) {
+			
+			throw new BoardException("Position not on the board");
+		}
 		
 		return pieces[row][column];
 	}
 
 	public void placePiece(Piece piece, Position position) {
 		
+		if(thereIsAPiece(position)) {
+			
+			throw new BoardException("There is already a piece on position " + position );
+		}
+		
 		pieces[position.getRow()][position.getColumn()] = piece;
+		
+	}
+	
+	private boolean positionExists(int row, int column) { //facilita testar se a posição existe por linha e coluna
+		
+		return row >= 0 && row < rows && column >= 0 && column < columns;
+		
+	}
+	
+	public boolean positionExists(Position position) {
+		
+		return positionExists(position.getRow(), position.getColumn());
+
+	}
+	
+	public boolean thereIsAPiece(Position position) {  //testa se tem uma peça nesta posição
+		
+		if(!positionExists(position)) {
+			
+			throw new BoardException("Position not on the board");
+		}
+		
+		return piece(position) != null;
 	}
 	
 	//SOBRECARGA
