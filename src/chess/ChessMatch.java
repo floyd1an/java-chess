@@ -63,6 +63,10 @@ public class ChessMatch {  //classe dedicada às regras do sistema de xadrez
 			
 			throw new ChessExceptions("There is no piece on source position");
 		}
+		if(!board.piece(position).isThereAnyPossibleMove()) { //testando se não tem  movimento possivel
+			
+			throw new ChessExceptions("There is not a possible moves for the chose piece ");
+		}
 	}
 	
 	private void placeNewPiece (char column, int row, ChessPiece piece) {

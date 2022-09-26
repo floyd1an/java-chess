@@ -23,4 +23,13 @@ public class Rook extends ChessPiece{
 		
 	}
 	
+	@Override
+	public boolean[][] possibleMoves() {
+		// TODO Auto-generated method stub
+		
+		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];  //matriz da mesma dimensão do tabuleiro
+		
+		return mat;
+	}
+	
 }
