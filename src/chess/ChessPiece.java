@@ -2,8 +2,9 @@ package chess;
 
 import boardgame.Board;
 import boardgame.Piece;
+import boardgame.Position;
 
-public abstract class ChessPiece extends Piece{  //subclasse de Piece
+public abstract class ChessPiece extends Piece{  //subclasse de Piece, as operações aqui podem ser aproveitadas em todas as outras peças
 	
 	private Color color;
 
@@ -29,6 +30,10 @@ public abstract class ChessPiece extends Piece{  //subclasse de Piece
 		this.color = color;
 	}*/
 	
-	
+	protected boolean isThereOpponentPiece(Position position) { // verificar se existe uma peça adversária na posição de destino
+		
+		ChessPiece p = (ChessPiece)getBoard().piece(position);
+		return p != null && p.getColor() != color; //se null ou cor diferente, então é uma peça adversária
+	}
 
 }

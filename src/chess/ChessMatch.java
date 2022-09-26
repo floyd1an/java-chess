@@ -43,7 +43,8 @@ public class ChessMatch {  //classe dedicada às regras do sistema de xadrez
 		
 		Position source =  sourcePosition.toPosition();
 		Position target =  targetPosition.toPosition();
-		ValidateSourcePosition(source);  //valida essa posição de origem, se não existir, passa uma exceção
+		validateSourcePosition(source);  		//valida essa posição de origem, se não existir, passa uma exceção
+		validateTargetPosition(source, target);  //validar posição de destino
 		Piece capturedPiece = makeMove(source, target);
 		return (ChessPiece) capturedPiece;
 		
@@ -57,7 +58,7 @@ public class ChessMatch {  //classe dedicada às regras do sistema de xadrez
 		return capturedPiece;
 	}
 	
-	private void ValidateSourcePosition(Position position) {
+	private void validateSourcePosition(Position position) {
 		
 		if(!board.thereIsAPiece(position)) {
 			
@@ -67,6 +68,13 @@ public class ChessMatch {  //classe dedicada às regras do sistema de xadrez
 			
 			throw new ChessExceptions("There is not a possible moves for the chose piece ");
 		}
+	}
+	
+	private void validateTargetPosition(Position source, Position target) {
+		
+		if(!board.piece(source).possibleMove(target));   		//se a posição de destino não é um movimento possivel, significa que não posso mover para lá 
+
+		throw new ChessExceptions("There chosen piece can´t move to target position");
 	}
 	
 	private void placeNewPiece (char column, int row, ChessPiece piece) {
