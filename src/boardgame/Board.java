@@ -56,7 +56,7 @@ public class Board {
 		}
 		
 		pieces[position.getRow()][position.getColumn()] = piece;
-		
+		piece.position = position;
 	}
 	
 	
