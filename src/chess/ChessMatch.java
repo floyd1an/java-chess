@@ -2,6 +2,9 @@ package chess;
 
 import boardgame.Position;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import boardgame.Board;
 import boardgame.Piece;
 import chess.pieces.King;
@@ -12,6 +15,10 @@ public class ChessMatch {  //classe dedicada às regras do sistema de xadrez
 	private int turn;
 	private Color currentPlayer;
 	private Board board;
+	
+	private List<Piece> piecesOnTheBoard = new ArrayList<>();
+	private List<Piece> capturedPieces = new ArrayList<>();
+
 	
 	
 	//CONSTRUTORES
@@ -80,6 +87,12 @@ public class ChessMatch {  //classe dedicada às regras do sistema de xadrez
 		Piece p = board.removePiece(source);  //remove a peça do local de origem
 		Piece capturedPiece = board.removePiece(target);  //remove uma possivel peça no local de destino
 		board.placePiece(p, target);  //coloca essa posição que estava na posição de origem na posição de destino
+		
+		if(capturedPiece != null) {   
+			
+			piecesOnTheBoard.remove(capturedPiece);
+			capturedPieces.add(capturedPiece);
+		}
 		return capturedPiece;
 	}
 	 
@@ -121,6 +134,7 @@ public class ChessMatch {  //classe dedicada às regras do sistema de xadrez
 	private void placeNewPiece (char column, int row, ChessPiece piece) {
 		
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
+		piecesOnTheBoard.add(piece);   //coloca na lista de peças no tabuleiro
 	}
 	
 	
