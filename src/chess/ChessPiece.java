@@ -30,6 +30,13 @@ public abstract class ChessPiece extends Piece{  //subclasse de Piece, as opera�
 		this.color = color;
 	}*/
 	
+	
+	public ChessPosition getChessPosition() {
+		
+		return ChessPosition.fromPosition(position);
+	}
+	
+	
 	protected boolean isThereOpponentPiece(Position position) { // verificar se existe uma peça adversária na posição de destino
 		
 		ChessPiece p = (ChessPiece)getBoard().piece(position);
