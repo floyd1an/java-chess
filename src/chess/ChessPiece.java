@@ -7,6 +7,7 @@ import boardgame.Position;
 public abstract class ChessPiece extends Piece{  //subclasse de Piece, as operações aqui podem ser aproveitadas em todas as outras peças
 	
 	private Color color;
+	private int moveCount;
 
 
 	//CONSTRUTORES
@@ -16,7 +17,7 @@ public abstract class ChessPiece extends Piece{  //subclasse de Piece, as opera�
 		this.color = color;
 	}
 
-
+	
 	
 	
 	// GETTERS AND SETTERS
@@ -25,10 +26,25 @@ public abstract class ChessPiece extends Piece{  //subclasse de Piece, as opera�
 		return color;
 	}
 
+	public int getMoveCount() {
+		return moveCount;
+	}
 
 	/*public void setColor(Color color) {  A cor da peça deve apenas ser acessada e não modificada
 		this.color = color;
 	}*/
+	
+	//METODOS
+	
+	public void increaseMoveCount() {
+		
+		moveCount++;
+	}
+	
+	public void decreaseMoveCount() {
+		
+		moveCount--;
+	}
 	
 	
 	public ChessPosition getChessPosition() {

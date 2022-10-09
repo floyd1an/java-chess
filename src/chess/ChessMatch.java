@@ -108,7 +108,8 @@ public class ChessMatch {  //classe dedicada às regras do sistema de xadrez
 	
 	private Piece makeMove(Position source, Position target) {  //lógica de realizar um movimento
 		
-		Piece p = board.removePiece(source);  //remove a peça do local de origem
+		ChessPiece p = (ChessPiece)board.removePiece(source);  //remove a peça do local de origem
+		p.increaseMoveCount();
 		Piece capturedPiece = board.removePiece(target);  //remove uma possivel peça no local de destino
 		board.placePiece(p, target);  //coloca essa posição que estava na posição de origem na posição de destino
 		
@@ -122,7 +123,8 @@ public class ChessMatch {  //classe dedicada às regras do sistema de xadrez
 	
 	private void undoMove(Position source, Position target, Piece capturedPiece) {
 		
-		Piece p = board.removePiece(target);
+		ChessPiece p = (ChessPiece)board.removePiece(target);
+		p.decreaseMoveCount();
 		board.placePiece(p, source);
 		
 		if(capturedPiece != null) {
